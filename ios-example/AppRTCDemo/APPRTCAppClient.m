@@ -257,7 +257,7 @@
 #pragma mark - NSURLConnectionDataDelegate methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-  NSString *roomHtml = [NSString stringWithUTF8String:[data bytes]];
+  NSString *roomHtml = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
   [self maybeLogMessage:
           [NSString stringWithFormat:@"Received %d chars", [roomHtml length]]];
   [self.roomHtml appendString:roomHtml];
